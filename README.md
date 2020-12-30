@@ -1,6 +1,10 @@
 # Simpledata
 A blockchain system made by rdpstudio.
 
+Note:
+
+Now it didn't support parallel chain(P2P).
+
 
 ## What is a blockchain?
 

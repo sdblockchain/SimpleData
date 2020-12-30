@@ -78,7 +78,7 @@ def send_transaction(addr_from, private_key, addr_to, amount):
 
     if len(private_key) == 64:
         signature, message = sign_ECDSA_msg(private_key)
-        url = 'http://localhost:5000/txion'
+        url = node + '/txion'
         payload = {"from": addr_from,
                    "to": addr_to,
                    "amount": amount,
@@ -106,7 +106,7 @@ before claiming it as approved!
 
 if len(private_key) == 64:
     signature, message = sign_ECDSA_msg(private_key)
-    url = 'http://localhost:5000/data'
+    url = node + '/data'
     payload = {"from": addr_from,
                "data": data,
                "signature": signature.decode(),
@@ -122,7 +122,7 @@ def check_transactions():
     """Retrieve the entire blockchain. With this you can check your
     wallets balance. If the blockchain is to long, it may take some time to load.
     """
-    res = requests.get('http://localhost:5000/blocks')
+    res = requests.get(node + '/blocks')
     print(res.text)
 
 
@@ -163,10 +163,12 @@ def sign_ECDSA_msg(private_key):
 
 
 if __name__ == '__main__':
+    global node
+    node = 'https://mainnet.cn.utools.club'
     print("""       =========================================\n
         SIMPLE DATA v1.0.0 - BLOCKCHAIN SYSTEM\n
        =========================================\n\n
         Make sure you are using the latest version or you may end in
         a parallel chain.\n\n\n""")
-    wallet()
-    input("Press ENTER to exit...")
+    while True:
+        wallet()
