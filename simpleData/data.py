@@ -92,31 +92,31 @@ def send_transaction(addr_from, private_key, addr_to, amount):
         print("Wrong address or key length! Verify and try again.")
 
 def send_data(addr_from, private_key, data):
-"""Sends your data to different nodes. Once any of the nodes manage
-to mine a block, your transaction will be added to the blockchain. Despite
-that, there is a low chance your transaction gets canceled due to other nodes
-having a longer chain. So make sure your transaction is deep into the chain
-before claiming it as approved!
-"""
-# For fast debugging REMOVE LATER
-# private_key="181f2448fa4636315032e15bb9cbc3053e10ed062ab0b2680a37cd8cb51f53f2"
-# amount="3000"
-# addr_from="SD5IZAuFixM3PTmkm5ShvLm1tbDNOmVlG7tg6F5r7VHxPNWkNKbzZfa+JdKmfBAIhWs9UKnQLOOL1U+R3WxcsQ=="
-# addr_to="SD5IZAuFixM3PTmkm5ShvLm1tbDNOmVlG7tg6F5r7VHxPNWkNKbzZfa+JdKmfBAIhWs9UKnQLOOL1U+R3WxcsQ=="
-
-if len(private_key) == 64:
-    signature, message = sign_ECDSA_msg(private_key)
-    url = node + '/data'
-    payload = {"from": addr_from,
-               "data": data,
-               "signature": signature.decode(),
-               "message": message}
-    headers = {"Content-Type": "application/json"}
-
-    res = requests.post(url, json=payload, headers=headers)
-    print(res.text)
-else:
-    print("Wrong address or key length! Verify and try again.")
+    """Sends your data to different nodes. Once any of the nodes manage
+    to mine a block, your transaction will be added to the blockchain. Despite
+    that, there is a low chance your transaction gets canceled due to other nodes
+    having a longer chain. So make sure your transaction is deep into the chain
+    before claiming it as approved!
+    """
+    # For fast debugging REMOVE LATER
+    # private_key="181f2448fa4636315032e15bb9cbc3053e10ed062ab0b2680a37cd8cb51f53f2"
+    # amount="3000"
+    # addr_from="SD5IZAuFixM3PTmkm5ShvLm1tbDNOmVlG7tg6F5r7VHxPNWkNKbzZfa+JdKmfBAIhWs9UKnQLOOL1U+R3WxcsQ=="
+    # addr_to="SD5IZAuFixM3PTmkm5ShvLm1tbDNOmVlG7tg6F5r7VHxPNWkNKbzZfa+JdKmfBAIhWs9UKnQLOOL1U+R3WxcsQ=="
+    
+    if len(private_key) == 64:
+        signature, message = sign_ECDSA_msg(private_key)
+        url = node + '/data'
+        payload = {"from": addr_from,
+                   "data": data,
+                   "signature": signature.decode(),
+                   "message": message}
+        headers = {"Content-Type": "application/json"}
+    
+        res = requests.post(url, json=payload, headers=headers)
+        print(res.text)
+    else:
+        print("Wrong address or key length! Verify and try again.")
 
 def check_transactions():
     """Retrieve the entire blockchain. With this you can check your
@@ -167,8 +167,6 @@ if __name__ == '__main__':
     node = 'https://mainnet.cn.utools.club'
     print("""       =========================================\n
         SIMPLE DATA v1.0.0 - BLOCKCHAIN SYSTEM\n
-       =========================================\n\n
-        Make sure you are using the latest version or you may end in
-        a parallel chain.\n\n\n""")
+       =========================================\n\n\n\n\n""")
     while True:
         wallet()
